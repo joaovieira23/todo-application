@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Heading, VStack, IconButton } from '@chakra-ui/react';
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
@@ -15,8 +15,16 @@ export default function Home() {
         body: 'Pegar manteira',
     },
 ];
+  const [todosList, setTodosList] = useState([]);
 
-  const [todosList, setTodosList] = useState(todos);
+  useEffect(() => {
+    setTodosList(() => JSON.parse(localStorage.getItem('todos')) || [])
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
 
   function deleteTodo(id: number) {
     const newTodos = todosList.filter((todo) => {
