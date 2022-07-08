@@ -1,4 +1,4 @@
-import { VStack, HStack, Text, Spacer, IconButton, StackDivider } from '@chakra-ui/react';
+import { Badge, VStack, HStack, Text, Spacer, IconButton, StackDivider } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
 
 interface TodoListProps {
@@ -7,6 +7,15 @@ interface TodoListProps {
 };
 
 function TodoList({ todos, deleteTodo }: TodoListProps) {
+
+    if(!todos.length) {
+        return (
+            <Badge colorScheme="green" p="4" m="4">
+                Sem tarefas, yay!!
+            </Badge>
+        );
+    }
+    
     return (
         <VStack
             borderColor="gray.100"
