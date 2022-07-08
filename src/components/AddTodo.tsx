@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HStack, Input, Button } from '@chakra-ui/react';
+import { HStack, Input, Button, useToast } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
 
 interface TodoProps {
@@ -13,8 +13,20 @@ interface AddTodoProps {
 
 function AddTodo({ addTodo }: AddTodoProps) {
 
+    const toast = useToast();
+
     function handleSubmit(e) {
         e.preventDefault();
+
+        if(!content) {
+            toast({
+                title: 'Sem conteúdo',
+                status: 'error',
+                duration: 3000,
+                isClosable: true
+            })
+            return 
+        }
 
         const todo = {
             id: nanoid(),
