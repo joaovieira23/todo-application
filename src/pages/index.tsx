@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Heading, VStack, IconButton } from '@chakra-ui/react';
+import { Heading, VStack, IconButton, useColorMode } from '@chakra-ui/react';
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
 import { FaSun, FaMoon } from 'react-icons/fa';
@@ -39,11 +39,19 @@ export default function Home() {
     setTodosList([...todosList, todo]);
   };
 
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     // AddTodo
     // TodoList
     <VStack p={4}>
-      <IconButton icon={<FaSun />} isRound="true" size="lg" alignSelf="flex-end"/>
+      <IconButton 
+        icon={<FaSun />} 
+        isRound="true" 
+        size="lg" 
+        alignSelf="flex-end"
+        onClick={toggleColorMode}
+      />
       <Heading 
         mb="8" 
         fontWeight="extrabold" 
