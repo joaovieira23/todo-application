@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { HStack, Input, Button } from '@chakra-ui/react';
+import { nanoid } from 'nanoid';
 
 interface TodoProps {
     id: number;
@@ -14,7 +15,14 @@ function AddTodo({ addTodo }: AddTodoProps) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(content);
+
+        const todo = {
+            id: nanoid(),
+            body: content
+        };
+
+        addTodo(todo);
+        setContent('');
     };
 
     const [content, setContent] = useState('');
