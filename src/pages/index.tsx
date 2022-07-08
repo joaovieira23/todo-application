@@ -27,6 +27,10 @@ export default function Home() {
     setTodosList(newTodos);
   };
 
+  function addTodo(todo: { id: number, body: string }) {
+    setTodosList([...todosList, todo]);
+  };
+
   return (
     // AddTodo
     // TodoList
@@ -42,7 +46,7 @@ export default function Home() {
           Todo Application
         </Heading>
         <TodoList todos={todosList} deleteTodo={deleteTodo} />
-        <AddTodo />
+        <AddTodo addTodo={addTodo} />
     </VStack>
   )
 }
