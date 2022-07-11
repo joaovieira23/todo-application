@@ -1,9 +1,18 @@
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript, extendTheme } from '@chakra-ui/react';
+
+const config = {
+  initialColor: 'light',
+  useSystemColorMode: false
+};
+
+const theme = extendTheme({
+  config,
+});
 
 function App({ Component, pageProps }) {
   return (
-    <ChakraProvider>
-      <ColorModeScript initialColorMode="light" />
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColor} />
       <Component {...pageProps} />
     </ChakraProvider>
   )

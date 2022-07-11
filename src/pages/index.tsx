@@ -46,7 +46,7 @@ export default function Home() {
     // TodoList
     <VStack p={4}>
       <IconButton 
-        icon={<FaSun />} 
+        icon={colorMode === 'light' ? <FaSun /> : <FaMoon />} 
         isRound="true" 
         size="lg" 
         alignSelf="flex-end"
